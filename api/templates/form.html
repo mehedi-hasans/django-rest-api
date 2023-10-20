@@ -7,8 +7,19 @@
 </head>
 <body>
     <h3>{{heading}}</h3>
-    <form>
+    <form method='POST'>
         {{newForm.as_p}}
+        {% csrf_token %}
+        <input type="submit" name='submit' value="Submit">
     </form>
+    <hr>
+    <div>
+        <h3>Form Output</h3>
+        {% if formSubmited %}
+        <p>Name: {{name}}</p>
+        <p>Date Of Birth: {{dob}}</p>
+        <p>Email: {{email}}</p>
+        {% endif %}
+    </div>
 </body>
 </html>

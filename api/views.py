@@ -10,4 +10,20 @@ def index(request):
 def form(request):
     djangoForm = forms.djangoForms()
     diction = {'newForm': djangoForm, 'heading': 'Form from Django Library'}
+
+    if request.method =='POST':
+        djangoForm = forms.djangoForms(request.POST)
+        
+        if djangoForm.is_valid():
+            name = djangoForm.cleaned_data['name']
+            dob = djangoForm.cleaned_data['dob']
+            email = djangoForm.cleaned_data['email']
+
+            diction.update({'name': name})
+            diction.update({'dob': dob})
+            diction.update({'email': email})
+            diction.update({'formSubmited': 'Yes'})
+
+
+
     return render(request, 'form.html', diction)
