@@ -1,5 +1,7 @@
 from django import forms
 from django.core import validators
+
+from api import models
 class djangoForms(forms.Form):
     name= forms.CharField(label='User Name', widget=forms.TextInput(attrs={'placeholder': 'Enter your name', 'style': 'width: 320px'}))
     dob = forms.DateField(label='Date of Birth:', widget=forms.TextInput(attrs={'type': 'date'}))
@@ -20,3 +22,9 @@ class djangoForms(forms.Form):
         user_vemail = all_cleaned_data['user_vemail']
         if user_email != user_vemail:
             raise forms.ValidationError('Field Do not match!')
+
+
+class MusicianForm(forms.ModelForm):
+    class Meta:
+        model = models.Musician
+        fields = "__all__"

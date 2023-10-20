@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Form 2</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h3>{{heading}}</h3>
+    <form action='' method='POST'>
+        {% csrf_token %}
+        {{test_form.as_p}}
+        <input type="submit" name='submit' value="Submit">
+    </form>
+</body>
+</html>

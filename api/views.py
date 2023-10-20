@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import *
-from . import forms
+from api import forms
 # Create your views here.
 def index(request):
     musicianList = Musician.objects.order_by('first_name')
@@ -26,7 +26,6 @@ def form(request):
             fieldValidators = djangoForm.cleaned_data['fieldValidators']
             numberValidators = djangoForm.cleaned_data['numberValidators']
            
-
             diction.update({'name': name})
             diction.update({'dob': dob})
             diction.update({'email': email})
@@ -38,6 +37,18 @@ def form(request):
             diction.update({'numberValidators': numberValidators})
             diction.update({'formSubmited': 'Yes'})
 
-
-
     return render(request, 'form.html', diction)
+
+
+#Form Models
+def form2(request):
+    newForm = forms.MusicianForm()
+
+    if request.method == 'POST':
+        newForm = forms.MusicianForm(request.POST)
+
+        if newForm.is_valid():
+            newForm.save(commit=True)
+            return index(request)
+    diction = {'test_form': newForm, 'heading': 'Add New Musician'}
+    return render(request, 'form2.html', context=diction)
