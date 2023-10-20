@@ -13,7 +13,8 @@ def form(request):
 
     if request.method =='POST':
         djangoForm = forms.djangoForms(request.POST)
-        
+        diction.update({'newForm': djangoForm})
+        diction.update({'Ematch': 'Match Perfectly'})
         if djangoForm.is_valid():
             name = djangoForm.cleaned_data['name']
             dob = djangoForm.cleaned_data['dob']
@@ -22,6 +23,9 @@ def form(request):
             field = djangoForm.cleaned_data['field']
             option = djangoForm.cleaned_data['option']
             multipleOption = djangoForm.cleaned_data['multipleOption']
+            fieldValidators = djangoForm.cleaned_data['fieldValidators']
+            numberValidators = djangoForm.cleaned_data['numberValidators']
+           
 
             diction.update({'name': name})
             diction.update({'dob': dob})
@@ -30,6 +34,8 @@ def form(request):
             diction.update({'field': field})
             diction.update({'option': option})
             diction.update({'multipleOption': multipleOption})
+            diction.update({'fieldValidators': fieldValidators})
+            diction.update({'numberValidators': numberValidators})
             diction.update({'formSubmited': 'Yes'})
 
 
