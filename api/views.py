@@ -18,10 +18,18 @@ def form(request):
             name = djangoForm.cleaned_data['name']
             dob = djangoForm.cleaned_data['dob']
             email = djangoForm.cleaned_data['email']
+            boolean = djangoForm.cleaned_data['boolean']
+            field = djangoForm.cleaned_data['field']
+            option = djangoForm.cleaned_data['option']
+            multipleOption = djangoForm.cleaned_data['multipleOption']
 
             diction.update({'name': name})
             diction.update({'dob': dob})
             diction.update({'email': email})
+            diction.update({'boolean': boolean})
+            diction.update({'field': field})
+            diction.update({'option': option})
+            diction.update({'multipleOption': multipleOption})
             diction.update({'formSubmited': 'Yes'})
 
 
